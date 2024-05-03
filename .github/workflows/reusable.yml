@@ -1,0 +1,34 @@
+name: Reusable Workflow
+
+on:
+  workflow_call:
+    inputs:
+      name:
+        description: Input description
+        type: string
+        default: 'Ali'
+        required: false
+    secrets:
+      access-token:
+        description: Secret description
+        required: true
+jobs:
+  checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: action/checkout@v4
+
+      - name: List Repo
+        run: ls
+  log-context-and-inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Display Github Context
+        run: echo '${{ toJSO(github) }}'
+      
+      - name: Display name inputs
+        run: echo ${{ imputs.name }}
+      
+      - name: display secret token
+        run: echo '${{ secrets.access-token }}'
