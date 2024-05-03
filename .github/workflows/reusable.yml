@@ -25,10 +25,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Display Github Context
-        run: echo '${{ toJSO(github) }}'
+        run: echo '${{ toJSON(github) }}'
       
       - name: Display name inputs
-        run: echo ${{ imputs.name }}
+        run: echo ${{ inputs.name }}
       
       - name: display secret token
         run: echo '${{ secrets.access-token }}'
